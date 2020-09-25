@@ -31,3 +31,4 @@ hs_err_pid*
 #Exclude logs and build folder
 build/*
 logs/*
+.gradle/*

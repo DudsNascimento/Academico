@@ -15,7 +15,7 @@ public class DataSourceConfiguration {
         dataSourceBuilder.driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         dataSourceBuilder.url("jdbc:sqlserver://localhost;databaseName=Academico");
         dataSourceBuilder.username("SA");
-        dataSourceBuilder.password("q5w4e3r2t1*");
+        dataSourceBuilder.password("Q1w2e3r4t5*");
         return dataSourceBuilder.build();
     }
 }

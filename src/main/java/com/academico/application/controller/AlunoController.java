@@ -2,7 +2,6 @@ package com.academico.application.controller;
 
 import java.util.List;
 import java.lang.SuppressWarnings;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +25,6 @@ public class AlunoController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    @Secured("academico-user")
     public ResponseEntity obter() {
 
         return new ResponseEntity(new ControllerResponse(this.alunoFacade.obterTodos()), HttpStatus.OK);
@@ -34,7 +32,6 @@ public class AlunoController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    //@Secured("academico-user")
     public ResponseEntity salvar(@RequestBody AlunoViewModel aluno) {
 
         this.alunoFacade.salvar(aluno);

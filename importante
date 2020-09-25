@@ -1,0 +1,14 @@
+#Criar servidor keycloak
+sudo docker ps -a
+sudo docker create -p 8180:8080 --name=keycloak_server jboss/keycloak
+sudo docker start keycloak_server
+sudo docker exec keycloak_server /opt/jboss/keycloak/bin/add-user-keycloak.sh -u admin -p 122333
+sudo docker restart keycloak_server
+sudo docker rm keycloak_server
+sudo docker exec -it keycloak_server bash
+
+#Criar servidor microsoft sql
+sudo docker create -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Q1w2e3r4t5*' -p 1433:1433 --name=msql_server mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+sudo docker start mqsl_server
+sudo docker cp criar-database.sql msql_server:/opt
+sudo docker exec -it msql_server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Q1w2e3r4t5* -i /opt/criar-database.sql

@@ -11,11 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @SpringBootApplication
 @PropertySource("classpath:spring.properties")
-@EnableGlobalMethodSecurity(securedEnabled = true)
 public class Startup {
 	
     public String getGreeting() {

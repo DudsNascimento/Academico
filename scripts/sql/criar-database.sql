@@ -1,4 +1,4 @@
-CREATE DATABASE Academico;
+--CREATE DATABASE Academico;
 USE Academico;
 DROP TABLE Aluno;
 DROP TABLE Instituicao;

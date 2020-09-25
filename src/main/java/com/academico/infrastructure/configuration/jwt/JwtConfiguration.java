@@ -1,5 +1,6 @@
 package com.academico.infrastructure.configuration.jwt;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
@@ -46,6 +47,8 @@ class JwtConfiguration extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http.csrf().disable()
             .authorizeRequests()
+            .antMatchers(HttpMethod.GET, "/aluno").hasAnyRole("consulta-aluno", "gerencia-aluno")
+            .antMatchers(HttpMethod.POST, "/aluno").hasRole("gerencia-aluno")
             .anyRequest().permitAll();
     }
 }

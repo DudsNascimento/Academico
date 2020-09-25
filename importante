@@ -12,3 +12,8 @@ sudo docker create -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Q1w2e3r4t5*' -p 1433:1433 
 sudo docker start mqsl_server
 sudo docker cp criar-database.sql msql_server:/opt
 sudo docker exec -it msql_server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Q1w2e3r4t5* -i /opt/criar-database.sql
+
+#Escutar a rede
+ip link show
+ip a
+sudo tcpdump -A -i lo

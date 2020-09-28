@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import com.academico.application.facade.AlunoFacadeInterface;
 import com.academico.application.viewmodel.AlunoViewModel;
 import com.academico.infrastructure.response.ControllerResponse;
+import com.academico.infrastructure.configuration.jwt.WithAnyOfTheseRoles;
 
 @RestController
 @RequestMapping(value = "/aluno")
@@ -25,6 +26,7 @@ public class AlunoController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "", method = RequestMethod.GET)
+    @WithAnyOfTheseRoles(roles = {"consulta-aluno", "gerencia-aluno"})
     public ResponseEntity obter() {
 
         return new ResponseEntity(new ControllerResponse(this.alunoFacade.obterTodos()), HttpStatus.OK);
@@ -32,6 +34,7 @@ public class AlunoController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "", method = RequestMethod.POST)
+    @WithAnyOfTheseRoles(roles = "gerencia-aluno")
     public ResponseEntity salvar(@RequestBody AlunoViewModel aluno) {
 
         this.alunoFacade.salvar(aluno);

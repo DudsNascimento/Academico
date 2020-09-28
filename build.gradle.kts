@@ -43,6 +43,8 @@ dependencies {
     
     // Use JUnit test framework
     testImplementation("junit:junit:4.13")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core:3.5.11")
 }
 
 application {
@@ -60,4 +62,32 @@ tasks.create<Zip>("zip") {
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs = listOf("-Xlint:unchecked")
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        flatDir {
+            dirs("CustomTasks/build/libs")
+        }
+    }
+    dependencies {
+        classpath("com.google.guava:guava:29.0-jre")
+        classpath(group = "", name = "CustomTasks")
+    }
+}
+
+tasks.register<com.custom.AddEntityTask>("addEntity") {
+
+    group = "CodeManager"
+    description = "Adiciona o esqueleto de uma nova entidade nova à arquitetura, com os respectivos service, repository e validator"
+    classpath = "src/main/java/com/academico"
+}
+
+tasks.register<com.custom.AddControllerTask>("addController") {
+
+    group = "CodeManager"
+    description = "Adiciona o esqueleto de um novo controller à arquitetura, com o respectivo facade"
+    classpath = "src/main/java/com/academico"
 }

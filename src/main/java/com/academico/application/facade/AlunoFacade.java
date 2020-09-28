@@ -16,15 +16,10 @@ import com.academico.infrastructure.exception.InternalErrorException;
 public class AlunoFacade implements AlunoFacadeInterface {
 
     @Inject
-    AlunoServiceInterface alunoService;
+    public AlunoServiceInterface alunoService;
 
     @Inject
     private ModelMapper modelMapper;
-
-    public AlunoFacade() {
-
-        this.alunoService = alunoService;
-    }
 
     public AlunoViewModel obterPorId(UUID id) {
 

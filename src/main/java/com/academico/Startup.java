@@ -16,13 +16,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:spring.properties")
 public class Startup {
 	
-    public String getGreeting() {
-        return "Hello world.";
-    }
-
     public static void main(String[] args) throws URISyntaxException {
     
-	    System.out.println(new Startup().getGreeting());
         System.setProperty("server.servlet.context-path", "/api");
 		SpringApplication.run(Startup.class, args);
     }

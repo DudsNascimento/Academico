@@ -3,11 +3,15 @@ sudo docker ps -a
 sudo docker image ls
 sudo docker system prune
 sudo docker rmi Image Image
-    sudo docker build -t academico .
 sudo docker rm keycloak_server
 sudo docker exec -it keycloak_server bash
 sudo docker exec -it academico_server ash
 sudo docker network inspect bridge
+
+#Criar servidor academico
+sudo docker build -t academico .
+sudo docker create -p 8080:8080 --name=academico_server academico:latest
+sudo docker start academico_server
 
 #Criar servidor keycloak
 sudo docker create -p 8180:8080 --name=keycloak_server jboss/keycloak

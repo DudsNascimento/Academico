@@ -7,6 +7,7 @@ sudo docker rm keycloak_server
 sudo docker exec -it keycloak_server bash
 sudo docker exec -it academico_server ash
 sudo docker network inspect bridge
+docker-compose up -d client
 
 #Criar servidor academico
 sudo docker build -t academico .
@@ -24,6 +25,14 @@ sudo docker create -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Q1w2e3r4t5*' -p 1433:1433 
 sudo docker start msql_server
 sudo docker cp criar-database.sql msql_server:/opt
 sudo docker exec -it msql_server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Q1w2e3r4t5* -i /opt/criar-database.sql
+
+#Criar servidor postgresql
+sudo docker build -t postgres .
+sudo docker create -e POSTGRES_PASSWORD=Q5w4e3r2t1* -p 5432:5432 --name=postgres_server postgres:latest
+sudo docker start postgres_server
+sudo docker exec -it postgres_server psql -h localhost -U postgres -d loans_service -p 5432  -f /opt/criar-database.sql
+sudo docker save postgres > postgres.tar
+sudo docker load postgres < postgres.tar
 
 #Escutar a rede
 ip link show

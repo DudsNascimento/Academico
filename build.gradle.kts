@@ -15,6 +15,7 @@ plugins {
 
     //Add spring boot to the application
     id("org.springframework.boot") version "2.3.3.RELEASE"
+    id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
 
 apply(plugin = "io.spring.dependency-management")

@@ -25,7 +25,7 @@ public class LoginController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity salvar(@RequestBody LoginViewModel login) {
+    public ResponseEntity login(@RequestBody LoginViewModel login) {
 
         return new ResponseEntity(this.loginFacade.logar(login), HttpStatus.OK);
     }
